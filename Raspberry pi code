@@ -1,0 +1,39 @@
+python
+import RPi.GPIO as GPIO
+import time
+
+# Set up GPIO pins for sensors and actuators
+water_level_pin = 17
+valve_pin = 18
+
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(water_level_pin, GPIO.IN)
+GPIO.setup(valve_pin, GPIO.OUT)
+
+# Function to check water level
+def check_water_level():
+    if GPIO.input(water_level_pin):
+        return "Low"
+    else:
+        return "High"
+
+# Function to control the valve
+def control_valve(state):
+    GPIO.output(valve_pin, state)
+
+# Main loop
+while True:
+    water_level = check_water_level()
+    print("Water level:", water_level)
+
+    if water_level == "Low":
+        control_valve(GPIO.HIGH)  # Turn on the valve
+        print("Valve opened")
+    else:
+        control_valve(GPIO.LOW)  # Turn off the valve
+        print("Valve closed")
+
+    time.sleep(5)  # Wait for 5 seconds before checking again
+
+# Clean up GPIO pins
+GPIO.cleanup()
