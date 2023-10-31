@@ -1,0 +1,110 @@
+//html code
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Water Consumption Platform</title>
+   
+</head>
+<body>
+    <h1>Water Consumption Platform</h1>
+    <div id="dataContainer">
+        <div class="sensorCard">
+            <h2>Sensor 1</h2>
+            <div class="sensorValue" id="sensor1Value">0</div>
+            <div class="lastUpdated" id="sensor1LastUpdated"></div>
+            <button class="promoteButton" onclick="promoteWaterConservation(1)">Promote</button>
+        </div>
+        <div class="sensorCard">
+            <h2>Sensor 2</h2>
+            <div class="sensorValue" id="sensor2Value">0</div>
+            <div class="lastUpdated" id="sensor2LastUpdated"></div>
+            <button class="promoteButton" onclick="promoteWaterConservation(2)">Promote</button>
+        </div>
+        <div class="sensorCard">
+            <h2>Sensor 3</h2>
+            <div class="sensorValue" id="sensor3Value">0</div>
+            <div class="lastUpdated" id="sensor3LastUpdated"></div>
+            <button class="promoteButton" onclick="promoteWaterConservation(3)">Promote</button>
+        </div>
+    </div>
+
+   
+</body>
+</html>
+
+//css code:
+  body {
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        #dataContainer {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .sensorCard {
+            width: 300px;
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            margin-top: 0;
+        }
+
+        .sensorValue {
+            font-size: 24px;
+            font-weight: bold;
+            color: #4CAF50;
+            margin-bottom: 10px;
+        }
+
+        .lastUpdated {
+            font-size: 12px;
+            color: #888;
+        }
+
+        .promoteButton {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+   
+
+
+//javascript code:
+  function updateSensorValue(sensorId) {
+            var sensorValue = Math.floor(Math.random() * 100); // Replace with actual sensor data
+
+            var valueElement = document.getElementById("sensor" + sensorId + "Value");
+            var lastUpdatedElement = document.getElementById("sensor" + sensorId + "LastUpdated");
+
+            valueElement.textContent = sensorValue;
+            lastUpdatedElement.textContent = "Last updated: " + new Date().toLocaleString();
+        }
+
+        function promoteWaterConservation(sensorId) {
+            // Code to promote water conservation efforts
+            alert("Promote water conservation for sensor " + sensorId);
+        }
+
+        setInterval(function() {
+            // Update sensor values every 5 seconds
+            updateSensorValue(1);
+            updateSensorValue(2);
+            updateSensorValue(3);
+        }, 5000);
+
